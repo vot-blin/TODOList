@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="app\Dockerfile" />
+    <Compile Include="nginx\Dockerfile" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="app\app.csproj" />
+  </ItemGroup>
+
+</Project>

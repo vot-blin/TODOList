@@ -1,0 +1,14 @@
+﻿services:
+  app:
+    build:
+      context: ./app
+    expose:
+      - "8080"
+
+  nginx:
+    build:
+      context: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - app
