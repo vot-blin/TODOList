@@ -7,6 +7,8 @@ RUN dotnet publish -c Release -o /app/published
 # Этап запуска
 FROM --platform=linux/amd64 mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
+RUN apt-get update && apt-get install -y curl
 COPY --from=build /app/published .
 EXPOSE 8080
+ENV ASPNETCORE_URLS=http://+:8080
 ENTRYPOINT ["dotnet", "app.dll"]

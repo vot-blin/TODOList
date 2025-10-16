@@ -1,14 +1,26 @@
 ﻿services:
   app:
-    build:
-      context: ./app
-    expose:
-      - "8080"
+    image: project-app:latest
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: any
+    networks:
+      - app-network
 
   nginx:
-    build:
-      context: ./nginx
+    image: project-nginx:latest
     ports:
       - "80:80"
-    depends_on:
-      - app
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: any
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: overlay
